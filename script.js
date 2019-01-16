@@ -288,6 +288,8 @@ $(document).ready(function() {
             alert('Please Enter a Valid Email to continue.')
             return; 
         }
+
+        alert('כעת יתבצע תרגול קצר, על מנת לוודא שהבנת את ההוראות. הכסף שתרוויח/י במהלך התרגול לא ישמר בקופה.')
          
         showGame()
     });
