@@ -5,7 +5,8 @@ $(document).ready(function() {
     var saveThis = 'hidden'; // text fields that save data should not be shown; can be shown in testing
     
     // initialize values
-    var round = 0;
+    var demo_rounds = 2;
+    var round = 0 - demo_rounds;
     var start_size = 150; // start value of widht & height of the image; must correspond to the value that is specified for the #ballon id in style.css
     var increase = 8; // number of pixels by which balloon is increased each pump
     var size; // start_size incremented by 'increase'
@@ -18,13 +19,13 @@ $(document).ready(function() {
     var number_pumps = []; // arrays for saving number of pumps
     var exploded = []; // array for saving whether ballon has exploded
     
-    
     // initialize language
     var label_press = 'Increase pressure in the supply line';
     var label_collect = 'Inflate the balloon with air from the supply line';
     var label_balance = 'total credit:';
     var label_currency = ' Coins';
     var label_header = 'Balloon game round ';
+    var label_header_demo = 'Balloon game Demo round '
     var label_gonext1 = 'Start next round';
     var label_gonext2 = 'exit game';
     var msg_1 = '<p>You have this round ';
@@ -45,9 +46,25 @@ $(document).ready(function() {
     
     
     // below: create functions that define game functionality
-    
+    var init_data = function() {
+        total = 0; // money that has been earned in total
+        number_pumps = []; // arrays for saving number of pumps
+        exploded = []; // array for saving whether ballon has exploded   
+        
+        // init visuals:
+        $('#total_value').html(total+label_currency);
+    }
+
     // what happens when a new round starts
     var new_round = function() {
+
+
+        // reset game on completed demo rounds:
+        if(round == 0){
+            init_data()
+            alert('וכעת נתחיל בבדיקה ')
+        }
+
         $('#gonext').hide();
         $('#message').hide();  
         $('#collect').show();
@@ -59,7 +76,16 @@ $(document).ready(function() {
         $('#ballon').width(size); 
         $('#ballon').height(size);
         $('#ballon').show();
-        $('#round').html('<h2>'+label_header+round+'<h2>');
+
+        // show header:
+        if(round > 0){
+            // real rounds:
+            $('#round').html('<h2>'+label_header+round+'<h2>');
+        }
+        else{
+            // real rounds:
+            $('#round').html('<h2>'+label_header_demo+(round+demo_rounds)+'<h2>');
+        }
     };
     
     // what happens when the game ends
@@ -145,10 +171,11 @@ $(document).ready(function() {
         // when the balloon explodes:
         
         // document.getElementById('explosion_sound').play();    
-    };  
+    };
     
     // show button that starts next round
     var gonext_message = function() {
+
         $('#ballon').hide();
         if (round < rounds_played) {
             $('#gonext').html(label_gonext1).show();
