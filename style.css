@@ -53,24 +53,6 @@ body {
 
 }
 
-#sliderwrap {
-  height: 420px;
-  float: left;
-}
-
-#showValue {
-  margin-top: 200px;
-  text-align: right;
-}
-
-#slider {
-  height:150px;
-  float: right;
-  margin-top: 10px;
-  background-color: #9DE0AD;
-}
-
-
 .ui-state-disabled {
    opacity: 1;
 }

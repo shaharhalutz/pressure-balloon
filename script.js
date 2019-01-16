@@ -94,7 +94,6 @@ $(document).ready(function() {
     
     // what happens when the game ends
     var end_game = function() {
-        $('#sliderwrap').remove();
         $('#total').remove();
         $('#collect').remove();
         $('#ballon').remove();
@@ -197,7 +196,7 @@ $(document).ready(function() {
     
     // button functionalities
     
-    // pump button functionality -> 'pressure' in slider bar increases
+    // pump button functionality -> 'pressure' increases
     $('#press').click(function() {
         var explosion = 0
 
@@ -230,14 +229,7 @@ $(document).ready(function() {
         // console.log(i);
         
     });
-    /*
-    $('#press').click(function() {
-        if (pumps >= 0 && pumps < maximal_pumps) { // interacts with the collect function, which sets pumps to -1, making the button temporarily unclickable
-            pumps += 1;
-            $("#slider" ).slider( "option", "value", pumps );
-        }
-    });
-    */
+
     // click this button to start the next round (or end game when all rounds are played)
     $('#gonext').click(function() {
         if (round < rounds_played) {
@@ -289,8 +281,7 @@ $(document).ready(function() {
 	    } else { 
 	        var animate_speed = 800; 
 	    }
-	    // animates slider value to 0
-            $('#slider').slider('value', 0);
+
 	    // balloon gets pumped using jQuery animation
 	    $('#ballon').animate({
 	        width: size+'px',
@@ -310,25 +301,6 @@ $(document).ready(function() {
         
     });
  
-    // initialize slider that handles the pumps
-    
-    $( "#slider" ).slider( {
-        orientation: "vertical",
-        value: 0,
-        min: 0,
-        max: 32,
-        disabled: true,
-        animate: true,
-        create: function( event, ui ) {
-            var v=$(this).slider('value');
-            $(this).find('.ui-slider-handle').text(v);
-        },
-        change: function( event, ui ) {
-            $(this).find('.ui-slider-handle').text(ui.value);
-        },
-        range: "min",
-    });
-    
     // test:
     $("#test").click(function() {
         let name = 'shahar',
