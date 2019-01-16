@@ -3,8 +3,8 @@
 $(document).ready(function() { 
     
     var saveThis = 'hidden'; // text fields that save data should not be shown; can be shown in testing
-    // TBD: check messages after rounds numbers are incorrect
-    var get_demo_rounds = function(){
+
+    var getRounds = function(){
         return round > 0 ? round : round + demo_rounds 
     }
 
@@ -17,7 +17,7 @@ $(document).ready(function() {
     var pumps; 
     var total = 0; // money that has been earned in total
     var rounds_played = 6;
-    var explode_array =  [3, 10, 23, 13, 7, 20]//[17, 10, 23, 13, 7, 20];
+    var explode_array =  [17, 10, 23, 13, 7, 20];
     var maximal_pumps = 30;
     var pumpmeup; // number pumps in a given round
     var number_pumps = []; // arrays for saving number of pumps
@@ -153,14 +153,14 @@ $(document).ready(function() {
     var explosion_message = function() {
         $('#collect').hide();
         $('#press').hide();
-        $('#message').html(msg_1+pumpmeup+msg_explosion2+explode_array[get_demo_rounds()-1]+msg_explosion3).show();
+        $('#message').html(msg_1+pumpmeup+msg_explosion2+explode_array[getRounds()-1]+msg_explosion3).show();
     };
     
     // message shown if balloon does not explode
     var collected_message = function() {
         $('#collect').hide();
         $('#press').hide();    
-        $('#message').html(msg_1+pumpmeup+msg_collect2+explode_array[get_demo_rounds()-1]+msg_collect3+pumpmeup+msg_collect4).show();
+        $('#message').html(msg_1+pumpmeup+msg_collect2+explode_array[getRounds()-1]+msg_collect3+pumpmeup+msg_collect4).show();
         // activate this if you have a sound file to play a sound
         // when the balloon does not explode:
         
@@ -265,10 +265,10 @@ $(document).ready(function() {
         size += increase;
 
         // did explode?
-        console.log('pumpmeup:',pumpmeup)
-        console.log('explode_array[get_demo_rounds()()-1]-1:',explode_array[get_demo_rounds()-1]-1)
+        console.log('pumpmeup: getRounds()',pumpmeup,getRounds())
+        console.log('explode_array[getRounds()()-1]-1:',explode_array[getRounds()-1])
 
-        if (pumpmeup === explode_array[get_demo_rounds()-1]-1) { // -> insert explosion criterion here
+        if (pumpmeup === explode_array[getRounds()-1]) { // -> insert explosion criterion here
             explosion = 1; 
         }
 	    
@@ -309,67 +309,7 @@ $(document).ready(function() {
 	    
         
     });
-    /*
-    $('#collect').click(function() {
-        if (pumps === 0) {
-	    alert('There is still no air in the supply line. You can only inflate the balloon as soon as you have pumped air into the supply line at least once. Press the button "Increase pressure in the supply line."');
-        }
-        else if (pumps > 0) { // only works after at least one pump has been made
-	    var explosion = 0; // is set to one if pumping goes beyond explosion point; see below
-	    number_pumps.push(pumps); // save number of pumps
-	    pumpmeup = pumps;
-	    pumps = -1; // makes pumping button unclickable until new round starts
-	    for (var i = 0; i < pumpmeup; i++) {
-	        size += increase;
-	        if (i === explode_array[round-1]-1) { // -> insert explosion criterion here
-	            explosion = 1; 
-	            break; // break loop when explosion point is reached; balloon will not get pumped any further!
-	        }
-	    }
-	    //determine animation speed; faster for smaller balloons
-            if (i < 4) {
-	        var animate_speed = 200;
-            } else if (i < 7) {
-	        var animate_speed = 300;
-	    } else if (i < 12) {
-	        var animate_speed = 400;
-	    } else if (i < 17) {
-	        var animate_speed = 500;
-            } else if (i < 22) {
-	        var animate_speed = 600;
-	    } else if (i < 27) {
-	        var animate_speed = 700;
-	    } else { 
-	        var animate_speed = 800; 
-	    }
-	    // animates slider value to 0
-            $('#slider').slider('value', 0);
-	    // balloon gets pumped using jQuery animation
-	    $('#ballon').animate({
-	        width: size+'px',
-	        height: size+'px',
-	    }, animate_speed
-                                );
-	    // handle explosion
-	    if (explosion === 1) {
-	        setTimeout(balloon_explode, animate_speed);
-	        setTimeout(explosion_message, animate_speed+1400);
-	        setTimeout(gonext_message, animate_speed+1400);
-	    }
-	    // handle no explosion
-	    else {
-	        total += pumpmeup;
-	        setTimeout(collected_message, animate_speed+1000);
-	        setTimeout(increase_value, animate_speed+1000);
-	        setTimeout(gonext_message, animate_speed+1000);
-	    }
-	    // console.log(number_pumps);	
-	    exploded.push(explosion); // save whether balloon has exploded or not
-	    // console.log(exploded);
-	    // console.log(i);
-        }
-    });
-  */  
+ 
     // initialize slider that handles the pumps
     
     $( "#slider" ).slider( {
