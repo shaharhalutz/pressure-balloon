@@ -9,6 +9,7 @@ $(document).ready(function() {
     }
 
     // initialize values
+    var explosion_flag = 0
     var demo_rounds = 2;
     var round = 0 - demo_rounds;
     var start_size = 150; // start value of widht & height of the image; must correspond to the value that is specified for the #ballon id in style.css
@@ -75,6 +76,7 @@ $(document).ready(function() {
         round += 1;
         size = start_size;
         pumps = 0;
+        explosion_flag = 0
         //  console.log(explode_array[round-1]);
         $('#ballon').width(size); 
         $('#ballon').height(size);
@@ -99,7 +101,6 @@ $(document).ready(function() {
         $('#press').remove();
         $('#gonext').remove();
         $('#round').remove();
-        $('#goOn').show();
         $('#message').html(msg_end1+total+msg_end2).show();
         $('#saveThis1').html('<input type='+saveThis+' name ="v_177" value="'+number_pumps+'" />');
         $('#saveThis2').html('<input type='+saveThis+' name ="v_178" value="'+exploded+'" />');
@@ -196,6 +197,13 @@ $(document).ready(function() {
     
     // pump button functionality -> 'pressure' increases
     $('#press').click(function() {
+
+        // dont allow done with 0 pumps:
+        if(!pumps){
+            alert('עליך לנפח לפחות פעם אחת')
+            return;
+        }
+
         var explosion = 0
 
         var i = pumps;
@@ -236,24 +244,24 @@ $(document).ready(function() {
         }
     });  
     
-    // continue button that is shown when the game has ended
-    $("#goOn").click(function() {
-        $("form[name=f1]").submit();
-    });
-    
-    // collect button: release pressure and hope for money
+    // pump button functionality -> 'pressure' increases
     $('#collect').click(function() {
+
+        if(explosion_flag){
+            return;
+        }
+
         // set 1 pump :
         pumps = pumps + 1
-	    var explosion = 0; // is set to one if pumping goes beyond explosion point; see below
-	    pumpmeup = pumps;
-        //pumps = -1; // makes pumping button unclickable until new round starts
+        pumpmeup = pumps;
 
-        size += increase;
-
+        var explosion = 0; // is set to one if pumping goes beyond explosion point; see below
         if (pumpmeup === explode_array[getRounds()-1]) { // -> insert explosion criterion here
+            explosion_flag = 1;
             explosion = 1; 
         }
+
+        size += increase;
 	    
         //determine animation speed; faster for smaller balloons
         var i = pumpmeup;
@@ -292,7 +300,6 @@ $(document).ready(function() {
 	    }
 	    // handle no explosion do nothing
 	    
-        
     });
  
     // test:
