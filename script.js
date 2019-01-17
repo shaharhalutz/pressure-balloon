@@ -62,7 +62,6 @@ $(document).ready(function() {
     // what happens when a new round starts
     var new_round = function() {
 
-
         // reset game on completed demo rounds:
         if(round == 0){
             init_data()
@@ -193,7 +192,6 @@ $(document).ready(function() {
         $('#total_value').html(total+label_currency);
     };
     
-    
     // button functionalities
     
     // pump button functionality -> 'pressure' increases
@@ -218,16 +216,14 @@ $(document).ready(function() {
 	    }
         // handle no explosion
     
-        total += pumpmeup;
+        total += pumps;
         setTimeout(collected_message, animate_speed+1000);
         setTimeout(increase_value, animate_speed+1000);
         setTimeout(gonext_message, animate_speed+1000);
     
-        // console.log(number_pumps);	
         exploded.push(explosion); // save whether balloon has exploded or not
-        // console.log(exploded);
-        // console.log(i);
-        
+        number_pumps.push(pumps); // save number of pumps
+
     });
 
     // click this button to start the next round (or end game when all rounds are played)
@@ -250,15 +246,10 @@ $(document).ready(function() {
         // set 1 pump :
         pumps = pumps + 1
 	    var explosion = 0; // is set to one if pumping goes beyond explosion point; see below
-	    number_pumps.push(pumps); // save number of pumps
 	    pumpmeup = pumps;
         //pumps = -1; // makes pumping button unclickable until new round starts
 
         size += increase;
-
-        // did explode?
-        console.log('pumpmeup: getRounds()',pumpmeup,getRounds())
-        console.log('explode_array[getRounds()()-1]-1:',explode_array[getRounds()-1])
 
         if (pumpmeup === explode_array[getRounds()-1]) { // -> insert explosion criterion here
             explosion = 1; 
@@ -293,7 +284,10 @@ $(document).ready(function() {
 	        setTimeout(balloon_explode, animate_speed);
 	        setTimeout(explosion_message, animate_speed+1400);
             setTimeout(gonext_message, animate_speed+1400);
+            
+            // save data (since done button wont be pressed)
             exploded.push(explosion); // save whether balloon has exploded or not
+            number_pumps.push(pumpmeup); // save number of pumps
 
 	    }
 	    // handle no explosion do nothing
@@ -303,11 +297,6 @@ $(document).ready(function() {
  
     // test:
     $("#test").click(function() {
-        let name = 'shahar',
-            number_pumps = 4,
-            exploded = 5,
-            total= 6;
-        //submitAssignent(name,number_pumps,exploded,total)
 
         // validate Email:
         var participantName = $("#participantName").val()
