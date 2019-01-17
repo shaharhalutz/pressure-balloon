@@ -12,9 +12,14 @@ body {
   font-size: 80%;
 }
 
+#instructions {
+  line-height: 180%;
+  font-size: 170%;
+}
+
+
 #participantName{
   text-align: right;
-
 }
 
 #round {

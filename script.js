@@ -41,6 +41,7 @@ $(document).ready(function() {
     var msg_collect4 = ' :הרווחת</p>';
     var msg_end1 = '<p>';
     var msg_end2 = ' הרווחת סהכ </p>';
+    var msg_end3 = ' ניצור עמך קשר בהקדם בכדי להעביר לך את התשלום \nתודה רבה על השתתפותך בניסוי'
     
     
     // initialize labels
@@ -66,7 +67,7 @@ $(document).ready(function() {
         // reset game on completed demo rounds:
         if(round == 0){
             init_data()
-            alert('וכעת נתחיל בבדיקה ')
+            alert('וכעת נעבור לניסוי')
         }
 
         $('#gonext').hide();
@@ -101,7 +102,7 @@ $(document).ready(function() {
         $('#press').remove();
         $('#gonext').remove();
         $('#round').remove();
-        $('#message').html(msg_end1+total+msg_end2).show();
+        $('#message').html(msg_end1+total+msg_end2+msg_end3).show();
         $('#saveThis1').html('<input type='+saveThis+' name ="v_177" value="'+number_pumps+'" />');
         $('#saveThis2').html('<input type='+saveThis+' name ="v_178" value="'+exploded+'" />');
         $('#saveThis3').html('<input type='+saveThis+' name ="v_577" value="'+total+'" />');
