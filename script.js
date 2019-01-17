@@ -114,11 +114,6 @@ $(document).ready(function() {
         $('#saveThis1').html('<input type='+saveThis+' name ="v_177" value="'+number_pumps+'" />');
         $('#saveThis2').html('<input type='+saveThis+' name ="v_178" value="'+exploded+'" />');
         $('#saveThis3').html('<input type='+saveThis+' name ="v_577" value="'+total+'" />');
-
-        // Upload:
-        var participantEmail = $("#participantName").val()
-
-        submitAssignent(participantEmail,number_pumps,exploded,total)
     };
 
     var submitAssignent = function(name,number_pumps,exploded,total){
@@ -184,7 +179,12 @@ $(document).ready(function() {
             $('#gonext').html(label_gonext1).show();
         }
         else {
+            // game done:
             $('#gonext').html(label_gonext2).show();
+
+            // submit data:
+            var participantEmail = $("#participantName").val()
+            submitAssignent(participantEmail,number_pumps,exploded,total)
         }
     };
     
