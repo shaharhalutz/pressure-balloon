@@ -1,7 +1,30 @@
 // pressure version of the BART
+$(document).ready(function() {
 
-$(document).ready(function() { 
-    
+    // show incompatible message
+    var showIncompatibleMessage = function() {
+        $('#participant').remove();
+        $('#total').remove();
+        $('#collect').remove();
+        $('#ballon').remove();
+        $('#press').remove();
+        $('#gonext').remove();
+        $('#round').remove();
+        $('#message').html('This App is not compatible with Mobile Browsers, Please use on a desktop browser').show();
+    };
+
+    // browsing on mobile device?
+    var md = new MobileDetect(window.navigator.userAgent);
+    if(md.mobile()){
+        console.log('on mobile')
+        showIncompatibleMessage()
+        return;
+    }
+    else{
+        console.log('on desktop')
+    }
+
+    // SART:
     var saveThis = 'hidden'; // text fields that save data should not be shown; can be shown in testing
 
     var getRounds = function(){
@@ -49,8 +72,7 @@ $(document).ready(function() {
     $('#collect').html(label_collect);
     $('#total_term').html(label_balance);
     $('#total_value').html(label_currency+total);
-    
-    
+
     // below: create functions that define game functionality
     var init_data = function() {
         total = 0; // money that has been earned in total
