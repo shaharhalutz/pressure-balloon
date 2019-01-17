@@ -25,29 +25,29 @@ $(document).ready(function() {
     var exploded = []; // array for saving whether ballon has exploded
     
     // initialize language
-    var label_press = 'Done Pumping';
-    var label_collect = 'Inflate the balloon';
-    var label_balance = 'total credit:';
-    var label_currency = ' Coins';
-    var label_header = 'Balloon game round ';
-    var label_header_demo = 'Balloon game Demo round '
-    var label_gonext1 = 'Start next round';
-    var label_gonext2 = 'exit game';
-    var msg_1 = '<p>You have this round ';
-    var msg_explosion2 = ' Times the pressure increases. The balloon is already after ';
-    var msg_explosion3 = ' Pressure increases burst!</p><p> You did not make any money this round.</p>';
-    var msg_collect2 = ' Sometimes the pressure increases without the balloon exploding. The balloon would be in this round only after '
-    var msg_collect3 = ' Pressure increases burst.</p><p>They have ';
-    var msg_collect4 = ' Taler profit made. The money earned is safe in the bank.</p>';
-    var msg_end1 = '<p>This completes this part of the study. You are in the balloon game ';
-    var msg_end2 = ' Taler profit made. </p><p>click on <i>Continue</i>, to proceed with the study.</p>';
+    var label_press = 'סיים סיבוב';
+    var label_collect = 'נפח/י את הבלון';
+    var label_balance = ':סכום כולל';
+    var label_currency = ' מטבעות ';
+    var label_header = ' סיבוב מס ';
+    var label_header_demo = ' סיבוב דמה מס '
+    var label_gonext1 = 'התחל סיבוב הבא';
+    var label_gonext2 = 'סיים';
+    var msg_1 = '<p>';
+    var msg_explosion2 = ' הבלון התפוצץ אחרי שניפחת אותו ';
+    var msg_explosion3 = ' פעמים</p><p> לא הרווחת כסף בסיבוב זה.</p>';
+    var msg_collect2 = ' יכולת לנפח בלון זה עוד '
+    var msg_collect3 = ' פעמים לפני שהיה מתפוצץ.</p><p>';
+    var msg_collect4 = ' :הרווחת</p>';
+    var msg_end1 = '<p>';
+    var msg_end2 = ' הרווחת סהכ </p>';
     
     
     // initialize labels
     $('#press').html(label_press); 
     $('#collect').html(label_collect);
     $('#total_term').html(label_balance);
-    $('#total_value').html(total+label_currency);
+    $('#total_value').html(label_currency+total);
     
     
     // below: create functions that define game functionality
@@ -57,7 +57,7 @@ $(document).ready(function() {
         exploded = []; // array for saving whether ballon has exploded   
         
         // init visuals:
-        $('#total_value').html(total+label_currency);
+        $('#total_value').html(label_currency+total);
     }
 
     // what happens when a new round starts
@@ -147,14 +147,14 @@ $(document).ready(function() {
     var explosion_message = function() {
         $('#collect').hide();
         $('#press').hide();
-        $('#message').html(msg_1+pumpmeup+msg_explosion2+explode_array[getRounds()-1]+msg_explosion3).show();
+        $('#message').html(msg_1+msg_explosion2+explode_array[getRounds()-1]+msg_explosion3).show();
     };
     
     // message shown if balloon does not explode
     var collected_message = function() {
         $('#collect').hide();
         $('#press').hide();    
-        $('#message').html(msg_1+pumpmeup+msg_collect2+explode_array[getRounds()-1]+msg_collect3+pumpmeup+msg_collect4).show();
+        $('#message').html(msg_1+msg_collect2+(explode_array[getRounds()-1]-pumpmeup)+msg_collect3+pumpmeup+msg_collect4).show();
         // activate this if you have a sound file to play a sound
         // when the balloon does not explode:
         
@@ -190,7 +190,7 @@ $(document).ready(function() {
     
     // add money to bank
     var increase_value = function() {
-        $('#total_value').html(total+label_currency);
+        $('#total_value').html(label_currency+total);
     };
     
     // button functionalities

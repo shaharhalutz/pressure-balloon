@@ -12,7 +12,8 @@ body {
   font-size: 80%;
 }
 
-#instructions{
+#participantName{
+  text-align: right;
 
 }
 
