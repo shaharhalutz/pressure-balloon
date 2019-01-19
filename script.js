@@ -52,19 +52,17 @@ $(document).ready(function() {
     var label_collect = 'נפח/י את הבלון';
     var label_balance = ':סכום כולל';
     var label_currency = ' מטבעות ';
-    var label_header = ' סיבוב מס ';
-    var label_header_demo = ' סיבוב דמה מס '
-    var label_gonext1 = 'התחל סיבוב הבא';
+    var label_header = ' סבב מספר ';
+    var label_header_demo = ' סבב דמה מספר '
+    var label_gonext1 = 'התחל סבב הבא';
     var label_gonext2 = 'סיים';
     var msg_1 = '<p>';
-    var msg_explosion2 = ' הבלון התפוצץ אחרי שניפחת אותו ';
-    var msg_explosion3 = ' פעמים</p><p> לא הרווחת כסף בסיבוב זה.</p>';
-    var msg_collect2 = ' יכולת לנפח בלון זה עוד '
-    var msg_collect3 = ' פעמים לפני שהיה מתפוצץ.</p><p>';
+    var msg_explosion3 = ' .לא הרווחת כסף בסבב זה';
     var msg_collect4 = ' :הרווחת</p>';
     var msg_end1 = '<p>';
-    var msg_end2 = ' הרווחת סהכ </p>';
-    var msg_end3 = ' ניצור עמך קשר בהקדם בכדי להעביר לך את התשלום \nתודה רבה על השתתפותך בניסוי'
+    var msg_end2 = ' הרווחת סך הכל </p>';
+    var msg_end3 = 'ניצור עמך קשר בהקדם בכדי להעביר לך את התשלום'
+    var msg_end4 = '<p>!תודה רבה על השתתפותך בניסוי</p>'
     
     
     // initialize labels
@@ -89,7 +87,17 @@ $(document).ready(function() {
         // reset game on completed demo rounds:
         if(round == 0){
             init_data()
-            alert('וכעת נעבור לניסוי')
+            //alert('וכעת נעבור לניסוי')
+            $("<div style='  text-align: right;font-size: 300%;' title = ''>וכעת נעבור לניסוי</div>").dialog({
+                modal: true,
+                height: 450,
+                width: 450,
+                buttons: {
+                  Ok: function() {
+                    $( this ).dialog( "close" );
+                  }
+                }
+              });
         }
 
         $('#gonext').hide();
@@ -124,7 +132,7 @@ $(document).ready(function() {
         $('#press').remove();
         $('#gonext').remove();
         $('#round').remove();
-        $('#message').html(msg_end1+total+msg_end2+msg_end3).show();
+        $('#message').html(msg_end1+total+msg_end2+msg_end3+msg_end4).show();
         $('#saveThis1').html('<input type='+saveThis+' name ="v_177" value="'+number_pumps+'" />');
         $('#saveThis2').html('<input type='+saveThis+' name ="v_178" value="'+exploded+'" />');
         $('#saveThis3').html('<input type='+saveThis+' name ="v_577" value="'+total+'" />');
@@ -170,14 +178,15 @@ $(document).ready(function() {
     var explosion_message = function() {
         $('#collect').hide();
         $('#press').hide();
-        $('#message').html(msg_1+msg_explosion2+explode_array[getRounds()-1]+msg_explosion3).show();
+        $('#message').html(msg_explosion3).show();
     };
     
     // message shown if balloon does not explode
     var collected_message = function() {
         $('#collect').hide();
         $('#press').hide();    
-        $('#message').html(msg_1+msg_collect2+(explode_array[getRounds()-1]-pumpmeup)+msg_collect3+pumpmeup+msg_collect4).show();
+        $('#message').html(pumpmeup+msg_collect4).show();
+
         // activate this if you have a sound file to play a sound
         // when the balloon does not explode:
         
@@ -331,17 +340,26 @@ $(document).ready(function() {
         // validate Email:
         var participantName = $("#participantName").val()
         if(participantName == ''){
-            alert('Please Enter Email to continue.')
+            alert('בבקשה הכנס אי מייל')
             return;
         }
 
         if(!isValidEmailAddress(participantName)){
-            alert('Please Enter a Valid Email to continue.')
+            alert(' האי מייל אינו חוקי')
             return; 
         }
 
-        alert('כעת יתבצע תרגול קצר, על מנת לוודא שהבנת את ההוראות. הכסף שתרוויח/י במהלך התרגול לא ישמר בקופה.')
-         
+        //alert('כעת יתבצע תרגול קצר, על מנת לוודא שהבנת את ההוראות. הכסף שתרוויח/י במהלך התרגול לא ישמר בקופה.')
+        $("<div style='  text-align: right;font-size: 200%;' title = ''>כעת יתבצע תרגול קצר, על מנת לוודא שהבנת את ההוראות. הכסף שתרוויח/י במהלך התרגול לא ישמר בקופה</div>").dialog({
+            modal: true,
+            height: 450,
+            width: 450,
+            buttons: {
+              Ok: function() {
+                $( this ).dialog( "close" );
+              }
+            }
+          });
         showGame()
     });
 
