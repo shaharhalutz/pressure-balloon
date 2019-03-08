@@ -50,7 +50,7 @@ $(document).ready(function() {
     var demo_rounds = 2;
     var round = 0 - demo_rounds;
     var start_size = 150; // start value of widht & height of the image; must correspond to the value that is specified for the #ballon id in style.css
-    var increase = 11; // number of pixels by which balloon is increased each pump
+    var increase = 2.2; // number of pixels by which balloon is increased each pump
     var size; // start_size incremented by 'increase'
     var pumps; 
     var total = 0; // money that has been earned in total
