@@ -27,8 +27,22 @@ $(document).ready(function() {
     // SART:
     var saveThis = 'hidden'; // text fields that save data should not be shown; can be shown in testing
 
-    var getRounds = function(){
-        return round > 0 ? round : round + demo_rounds 
+    function generateRandomInteger(min, max) {
+        return Math.floor(min + Math.random()*(max + 1 - min))
+    }
+
+    // for every pump the chance for explotion is 1/128 , 1/127 , ....
+    var shouldExplode = function(pumps){
+        const base_range = 128 + 1
+        var range = base_range - pumps;
+        var randomIntInRange = generateRandomInteger(1,range)
+        
+        // chance number is 1 ? 
+        if(randomIntInRange == 1){
+            return true
+        }
+
+        return false
     }
 
     // initialize values
@@ -41,8 +55,6 @@ $(document).ready(function() {
     var pumps; 
     var total = 0; // money that has been earned in total
     var rounds_played = 30;
-    var explode_array =  [17, 10, 23, 13, 7, 20];
-    var maximal_pumps = 30;
     var pumpmeup; // number pumps in a given round
     var number_pumps = []; // arrays for saving number of pumps
     var exploded = []; // array for saving whether ballon has exploded
@@ -288,7 +300,8 @@ $(document).ready(function() {
         pumpmeup = pumps;
 
         var explosion = 0; // is set to one if pumping goes beyond explosion point; see below
-        if (pumpmeup === explode_array[getRounds()-1]) { // -> insert explosion criterion here
+        if (shouldExplode(pumpmeup)) { // -> insert explosion criterion here
+
             explosion_flag = 1;
             explosion = 1; 
         }
