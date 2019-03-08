@@ -40,7 +40,7 @@ $(document).ready(function() {
     var size; // start_size incremented by 'increase'
     var pumps; 
     var total = 0; // money that has been earned in total
-    var rounds_played = 6;
+    var rounds_played = 30;
     var explode_array =  [17, 10, 23, 13, 7, 20];
     var maximal_pumps = 30;
     var pumpmeup; // number pumps in a given round
