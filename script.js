@@ -265,7 +265,8 @@ $(document).ready(function() {
 	        var animate_speed = 700;
 	    } else { 
 	        var animate_speed = 800; 
-	    }
+        }
+        animate_speed = 50
         // handle no explosion
     
         total += pumps;
@@ -325,7 +326,7 @@ $(document).ready(function() {
 	    } else { 
 	        var animate_speed = 800; 
 	    }
-
+        animate_speed = 50
 	    // balloon gets pumped using jQuery animation
 	    $('#ballon').animate({
 	        width: size+'px',
