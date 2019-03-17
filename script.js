@@ -240,7 +240,19 @@ $(document).ready(function() {
     // button functionalities
     
     // pump button functionality -> 'pressure' increases
-    $('#press').click(function() {
+    $('#press').click(execute_keep_cash);
+
+    // click this button to start the next round (or end game when all rounds are played)
+    $('#gonext').click(function() {
+        if (round < rounds_played) {
+            new_round();
+        }
+        else {
+            end_game();
+        }
+    });  
+
+    var execute_keep_cash = function() {
 
         // dont allow done with 0 pumps:
         if(!pumps){
@@ -277,20 +289,9 @@ $(document).ready(function() {
         exploded.push(explosion); // save whether balloon has exploded or not
         number_pumps.push(pumps); // save number of pumps
 
-    });
-
-    // click this button to start the next round (or end game when all rounds are played)
-    $('#gonext').click(function() {
-        if (round < rounds_played) {
-            new_round();
-        }
-        else {
-            end_game();
-        }
-    });  
+    }
     
-    // pump button functionality -> 'pressure' increases
-    $('#collect').click(function() {
+    var execute_pump = function() {
 
         if(explosion_flag){
             return;
@@ -346,7 +347,10 @@ $(document).ready(function() {
 	    }
 	    // handle no explosion do nothing
 	    
-    });
+    }
+
+    // pump button functionality -> 'pressure' increases
+    $('#collect').click(execute_pump);
  
     // test:
     $("#test").click(function() {
@@ -387,11 +391,27 @@ $(document).ready(function() {
         $("#round").hide();
     }
     var showGame = function() {
+
         $("#round").show();
 
         $("#bigbigwrap").show();
         $("#participant").hide();
 
+        // add listen to keyboard functionality:
+        document.addEventListener('keyup', function (event) {
+            if (event.defaultPrevented) {
+                return;
+            }
+        
+            var key = event.key || event.keyCode;
+
+            if(key === 32 || key === ' '){
+                execute_pump()
+            }
+            if(key === 13 || key === 'Enter'){
+                execute_keep_cash()
+            }  
+        });
     }
 
     // start the game!
