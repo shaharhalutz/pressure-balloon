@@ -16,7 +16,12 @@ body {
 #instructions {
   line-height: 180%;
   font-size: 170%;
+}
 
+#instructions2 {
+  line-height: 180%;
+  font-size: 170%;
+  margin-top:-15px;
 }
 
 
