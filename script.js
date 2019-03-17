@@ -240,18 +240,6 @@ $(document).ready(function() {
     // button functionalities
     
     // pump button functionality -> 'pressure' increases
-    $('#press').click(execute_keep_cash);
-
-    // click this button to start the next round (or end game when all rounds are played)
-    $('#gonext').click(function() {
-        if (round < rounds_played) {
-            new_round();
-        }
-        else {
-            end_game();
-        }
-    });  
-
     var execute_keep_cash = function() {
 
         // dont allow done with 0 pumps:
@@ -290,6 +278,20 @@ $(document).ready(function() {
         number_pumps.push(pumps); // save number of pumps
 
     }
+
+    $('#press').click(execute_keep_cash);
+
+    // click this button to start the next round (or end game when all rounds are played)
+    $('#gonext').click(function() {
+        if (round < rounds_played) {
+            new_round();
+        }
+        else {
+            end_game();
+        }
+    });  
+
+    
     
     var execute_pump = function() {
 
@@ -406,10 +408,19 @@ $(document).ready(function() {
             var key = event.key || event.keyCode;
 
             if(key === 32 || key === ' '){
-                execute_pump()
+
+                // are we in a round ? 
+                if ( !$('#gonext').is(":visible") ){
+                    execute_pump()
+                }
+
+             
             }
             if(key === 13 || key === 'Enter'){
-                execute_keep_cash()
+                // are we in a round ? 
+                if ( !$('#gonext').is(":visible") ){
+                    execute_keep_cash()
+                }
             }  
         });
     }
