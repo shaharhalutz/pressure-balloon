@@ -60,7 +60,7 @@ $(document).ready(function() {
     var exploded = []; // array for saving whether ballon has exploded
     
     // initialize language
-    var label_press = 'שמירת כסף';
+    var label_press = 'שמירת הנקודות';
     var label_collect = 'נפח/י את הבלון';
     var label_balance = ':סכום כולל';
     var label_currency = ' מטבעות ';
