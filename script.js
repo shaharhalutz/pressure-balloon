@@ -282,18 +282,18 @@ $(document).ready(function() {
 
     $('#press').click(execute_keep_cash);
 
-    // click this button to start the next round (or end game when all rounds are played)
-    $('#gonext').click(function() {
+    var goto_next = function(){
         if (round < rounds_played) {
             new_round();
         }
         else {
             end_game();
         }
-    });  
+    }
 
-    
-    
+    // click this button to start the next round (or end game when all rounds are played)
+    $('#gonext').click(goto_next);  
+
     var execute_pump = function() {
 
         if(explosion_flag){
@@ -421,6 +421,9 @@ $(document).ready(function() {
                 // are we in a round ? 
                 if ( !$('#gonext').is(":visible") ){
                     execute_keep_cash()
+                }
+                else{
+                    goto_next()
                 }
             }  
         });
