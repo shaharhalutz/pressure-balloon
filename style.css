@@ -23,7 +23,21 @@ body {
   font-size: 170%;
   margin-top:-15px;
 }
-
+#instructions3 {
+  line-height: 180%;
+  font-size: 170%;
+  margin-top:-15px;
+}
+#instructions4 {
+  line-height: 180%;
+  font-size: 170%;
+  margin-top:-15px;
+}
+#instructions5 {
+  line-height: 180%;
+  font-size: 170%;
+  margin-top:-15px;
+}
 
 #participantName{
   text-align: right;
