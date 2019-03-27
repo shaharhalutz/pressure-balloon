@@ -58,7 +58,8 @@ $(document).ready(function() {
     var pumpmeup; // number pumps in a given round
     var number_pumps = []; // arrays for saving number of pumps
     var exploded = []; // array for saving whether ballon has exploded
-    
+    var keepCashEnabled = true
+
     // initialize language
     var label_press = 'שמירת הנקודות';
     var label_collect = 'נפח/י את הבלון';
@@ -95,6 +96,9 @@ $(document).ready(function() {
 
     // what happens when a new round starts
     var new_round = function() {
+
+        // enable keep cash:
+        keepCashEnabled = true
 
         // reset game on completed demo rounds:
         if(round == 0){
@@ -149,6 +153,7 @@ $(document).ready(function() {
         $('#saveThis2').html('<input type='+saveThis+' name ="v_178" value="'+exploded+'" />');
         $('#saveThis3').html('<input type='+saveThis+' name ="v_577" value="'+total+'" />');
         store_data();
+        
     };
 
         // Important: this function will have to be replaced to ensure that
@@ -243,6 +248,11 @@ $(document).ready(function() {
     // pump button functionality -> 'pressure' increases
     var execute_keep_cash = function() {
 
+        if(!keepCashEnabled){
+            //console.log('we are between rounds keep cash disbled')
+            return ;
+        }
+
         // dont allow done with 0 pumps:
         if(!pumps){
             alert('עליך לנפח לפחות פעם אחת')
@@ -277,7 +287,7 @@ $(document).ready(function() {
     
         exploded.push(explosion); // save whether balloon has exploded or not
         number_pumps.push(pumps); // save number of pumps
-
+        keepCashEnabled = false
     }
 
     $('#press').click(execute_keep_cash);
@@ -346,6 +356,7 @@ $(document).ready(function() {
             // save data (since done button wont be pressed)
             exploded.push(explosion); // save whether balloon has exploded or not
             number_pumps.push(pumpmeup); // save number of pumps
+            keepCashEnabled = false
 
 	    }
 	    // handle no explosion do nothing
