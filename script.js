@@ -162,7 +162,8 @@ $(document).ready(function() {
     var submitAssignent = function(name,number_pumps,exploded,total){
         
         console.log('submitAssignment: params: ',name,number_pumps,exploded,total)
-        const SUBMIT_ENDPOINT = 'https://us-central1-able-groove-224509.cloudfunctions.net/onBartData'
+        //const SUBMIT_ENDPOINT = 'https://us-central1-able-groove-224509.cloudfunctions.net/onBartData'
+        const SUBMIT_ENDPOINT = 'https://aga7lso178.execute-api.eu-west-1.amazonaws.com/default/on-BART-data'
         let data = JSON.stringify({
             name,
             number_pumps:number_pumps.toString(),
