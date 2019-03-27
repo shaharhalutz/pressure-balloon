@@ -63,8 +63,8 @@ $(document).ready(function() {
     // initialize language
     var label_press = 'שמירת הנקודות';
     var label_collect = 'נפח/י את הבלון';
-    var label_balance = ':סכום כולל';
-    var label_currency = ' מטבעות ';
+    //var label_balance = ': נקודות';
+    var label_currency = '  נקודות: ';
     var label_header = ' סבב מספר ';
     var label_header_demo = ' סבב דמה מספר '
     var label_gonext1 = 'התחל סבב הבא';
@@ -81,7 +81,7 @@ $(document).ready(function() {
     // initialize labels
     $('#press').html(label_press); 
     $('#collect').html(label_collect);
-    $('#total_term').html(label_balance);
+    //$('#total_term').html(label_balance);
     $('#total_value').html(label_currency+total);
 
     // below: create functions that define game functionality
