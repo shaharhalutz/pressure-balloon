@@ -70,7 +70,7 @@ $(document).ready(function() {
     var label_gonext1 = 'התחל סבב הבא';
     var label_gonext2 = 'סיים';
     var msg_1 = '<p>';
-    var msg_explosion3 = ' .לא הרווחת כסף בסבב זה';
+    var msg_explosion3 = ' .לא הרווחת נקודות בסבב זה';
     var msg_collect4 = ' :הרווחת</p>';
     var msg_end1 = '<p>';
     var msg_end2 = ' הרווחת סך הכל </p>';
@@ -381,8 +381,8 @@ $(document).ready(function() {
             return; 
         }
 
-        //alert('כעת יתבצע תרגול קצר, על מנת לוודא שהבנת את ההוראות. הכסף שתרוויח/י במהלך התרגול לא ישמר בקופה.')
-        $("<div style='  text-align: right;font-size: 200%;' title = ''>כעת יתבצע תרגול קצר, על מנת לוודא שהבנת את ההוראות. הכסף שתרוויח/י במהלך התרגול לא ישמר בקופה</div>").dialog({
+        //alert('כעת יתבצע תרגול קצר, על מנת לוודא שהבנת את ההוראות. הנקודות שתרוויח/י במהלך התרגול לא ישמר בקופה.')
+        $("<div style='  text-align: right;font-size: 200%;' title = ''>כעת יתבצע תרגול קצר, על מנת לוודא שהבנת את ההוראות. הנקודות שתרוויח/י במהלך התרגול לא ישמר בקופה</div>").dialog({
             modal: true,
             height: 450,
             width: 450,
